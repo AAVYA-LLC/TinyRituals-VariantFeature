@@ -1,10 +1,10 @@
 # Tiny Rituals Variant Feature Development Theme
 
-> **Tiny Rituals Variant Feature Development Theme is actively in development and it requires attention.
+> Tiny Rituals Variant Feature Development Theme is actively in development and it requires attention.
 
 Tiny Rituals Variant Feature Development Theme is for the store [TinyRituals.co](https://tinyrituals.co) and it has specific feature that needs to be implemented.
 
-> **Scope: Specifically, reproduce the EXACT FUNCTIONALITY OF SOZY, backend and frontend. Specifically:
+> Scope: Specifically, reproduce the EXACT FUNCTIONALITY OF SOZY, backend and frontend. Specifically:
 Back End Experience:
 To select a specific product for a variant, the alt text would need to match just like on Sozy’s site.
 Front End Experience:
@@ -21,7 +21,7 @@ You'll want to ensure you have the following already installed on your local mac
 
 - **ThemeKit:** Themekit should be installed for development in local. [ThemeKit](https://shopify.github.io/themekit/).
 
-- **Config.yml:** Config.yml file is required for the development in local. [config.yml](https://shopify.github.io/themekit/configuration/).
+- **config.yml:** `config.yml` file is required for the development in local. [config.yml](https://shopify.github.io/themekit/configuration/).
 
 ## Getting started
 
@@ -36,3 +36,4 @@ $ theme watch
 
 For more information on connecting your local project with a Shopify store, see the [Themekit docs](https://shopify.github.io/themekit/#configure-an-existing-theme).
 
+Enjoy! :)
