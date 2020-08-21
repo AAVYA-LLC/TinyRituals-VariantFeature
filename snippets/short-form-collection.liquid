@@ -1,0 +1,67 @@
+{% assign productHasSizeOption = false %}
+{% assign productHasColorOption = false %}
+
+  {% for option in product.options %}
+    {% if option == swatch %}
+      {% assign found_option = true %}
+      {% assign option_index = forloop.index0 %}
+      {% assign option_id = 'option' | append: forloop.index %}
+      {% assign option_name = option %}
+      {% assign downcased_option = swatch | downcase %}
+      {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+        {% assign productHasColorOption = true %}
+      {% endif %}
+      {% if downcased_option contains 'size' %}
+        {% assign productHasSizeOption = true %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+
+<form action="/cart/add" method="post" data-money-format="{{ shop.money_format }}" class="product_form{% if product.variants.size > 1 or product.options.size > 1 %} with_variants{% endif %} product-form-{{ product.id }} product-form-variants-size-{{ product.variants.size }}" id="AddToCartForm" data-product="{{ product | json | escape }}" data-product-id="{{ product.id }}">
+	
+	{% if product.options.size > 1 %}
+		{% if product.available %}
+  			{% if productHasColorOption %}
+              {% include 'swatch' with 'Color' %}
+  			{% endif %}
+  
+  			{% if productHasSizeOption %}
+              {% include 'swatch' with 'Size' %}
+  			{% endif %}
+		{% endif %}
+		<div class="select">
+			<select id="product-select-{{ product.id }}" name='id'>
+				{% for variant in product.variants %}
+				<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% elsif product.options.size == 1 and product.variants.size > 1 %}
+		{% if product.available and product.variants.size > 1 %}
+			{% include 'swatch' with 'Size' %}
+		{% endif %}
+		<div class="select">
+			<label>{{ product.options[0] }}</label>
+			<select id="product-select-{{ product.id }}" name='id'>
+				{% for variant in product.variants %}
+					<option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	{% else %}
+		<div class="what-is-it">
+			{% if product.options.first != 'Title' %}
+				<label>{{ product.options.first }}:</label>{% for variant in product.variants %}<span class="it-is">{{ variant.option1 | escape }}</span>{% endfor %}
+			{% endif %}
+		</div>
+		<div class="product-variants"></div><!-- product variants -->	
+		<input	type="hidden" id="{{ variant.id }}" name="id" data-sku="{{ variant.sku }}" value="{{ product.variants[0].id }}" />		
+	{% endif %}
+</form>
+
+{% if product.variants.size > 1 or product.options.size > 1 %}
+	<script type="application/json" id="ProductJson-{{ product.id }}">
+		{{ product | json }}
+	</script>
+{% endif %}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<script src="https://hello.pledgeling.com/assets/shop/donation/button.js" async></script>
+<head>
+{% include 'pro-blogger-section-wrapper' %}
+
+      <!-- Anti-flicker snippet (recommended) -->
+<style>.async-hide { opacity: 0 !important} </style>
+<script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
+h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
+(a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+})(window,document.documentElement,'async-hide','dataLayer',4000,
+{'GTM-NCGVV49':true});</script>
+  
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NCGVV49');</script>
+<!-- End Google Tag Manager -->
+
+  
+  
+  
+  
+  <!-- better-open-graph-tags-head-begin -->
+  {% if shop.metafields.bopengraphtags.enabled == "true" %}
+  {% capture snippet_content %}{% include 'better-open-graph-tags-open-graph-tags'  %}{% endcapture %}
+  {% unless snippet_content contains "Liquid error" %}
+  {{ snippet_content }}
+  {% endunless %}
+  {% endif %}
+  <!-- better-open-graph-tags-head-end -->
+
+
+  <meta charset="utf-8" />
+
+  {% include 'google-fonts' %}
+  {% include 'social-media-meta-tags' %}
+
+  <!-- SEO
+================================================== -->
+
+  <title>
+    {% if template == 'index' %}{% if page_title contains 'Welcome' %}{{ shop.name }} &ndash; Welcome{% else %}{{ page_title }}{% endif %}{% elsif template == '404' %}Page Not Found{% elsif page_title contains shop.name %}{{ page_title }}{% else %}{{ page_title }} &ndash; {{ shop.name }}{% endif %}
+  </title>
+  {% if page_description %}
+  <meta name="description" content="{{ page_description }}" />
+  {% endif %}
+  <link rel="canonical" href="{{ canonical_url }}" />
+
+  <!-- CSS
+================================================== -->
+
+  {{ 'stylesheet.css' | asset_url | stylesheet_tag }}
+  {{ 'queries.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'custom-st.scss.css' | asset_url | stylesheet_tag }}
+
+  <!-- JS
+================================================== -->
+
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  {{ 'theme.js' | asset_url | script_tag }}
+  {{ 'custom_plugins.js' | asset_url | script_tag }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js" integrity="sha256-ns1OeEP3SedE9Theqmu444I44sikbp1O+bF/6BNUUy0=" crossorigin="anonymous"></script>  
+  {{ 'custom.js' | asset_url | script_tag }}
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  {% if template  == 'index'  %}{{ 'instafeed.js' | asset_url | script_tag }}{% endif %}
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  {% if settings.favicon %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+  {% endif %}
+  {% if template contains 'customers' %}
+  {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+  {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {% endif %}
+  
+        {% comment %} Remove these lines after disconnecting your shop from the Matcha app. {% endcomment %}
+        {% capture matcha_snippet_content %}{% include 'matcha-snippet' %}{% endcapture %}
+        {% unless matcha_snippet_content contains "Liquid error" %}
+          {{ matcha_snippet_content }}
+        {% endunless %}
+          {{ content_for_header }}
+  <link rel="next" href="/next"/>
+  <link rel="prev" href="/prev"/>
+  
+<!--Gem_Page_Header_Script-->
+{% include 'gem-app-header-scripts' %}
+<!--End_Gem_Page_Header_Script-->
+
+  {% include 'shogun-head' %}
+  <meta name="p:domain_verify" content="4ef10859099844d81714ac2d03d4877f"/>
+  {% include 'talkable-partial' %}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+  
+    
+  <!-- Hotjar Tracking Code for https://www.tinyrituals.co -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1593652,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+   <!-- END HOT JAR TRACKING --> 
+  
+  
+</head>
+
+<body class="gridlock shifter-left {{ template }}">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCGVV49"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  {% if settings.ajax_cart_method == 'drawer' %}
+  {% include 'timber-cart' %}
+  {% endif %}
+  <div class="shifter-page {% if settings.ajax_cart_method == 'drawer' %} is-moved-by-drawer{% endif %}" id="PageContainer">  
+      <div id="fsb_placeholder">
+  <script>
+  var fsb_adjusted = false;
+  $( "#fsb_placeholder" ).on( "fsb_fully_loaded", function(event, p1) {
+    if ((p1=='inserted' || p1=='inserted_sticky') && !fsb_adjusted ){
+      fsb_adjusted = true;
+      var fsb_height = $("#fsb_background").height();
+      $("<div />", {html: '<style>' + '.coverheader{top:' + fsb_height + 'px;}#fsb_background{z-index:20 !important;}' + '</style>'}).appendTo("body");
+    }
+  });
+  </script>
+</div>
+	{% section 'header' %}
+	<div class="page-wrap">
+		{% if template contains 'collection' %}
+			{% if collection.description contains '[banner]' %}
+				{% capture banner %}{{ collection.handle }}.jpg{% endcapture %}
+				<div class="collection-banner">
+					<img src="{{ banner | file_url }}" alt="{{ collection.title }}">
+				</div>
+			{% endif %}
+		{% endif %}
+		{% if template == 'index' or template contains 'blog' or template contains 'list-collections' or template contains 'collection' %}
+			{{ content_for_layout }}
+		{% else %}
+			<div id="content" class="row content-row">
+				{% if settings.breadcrumb %}
+					{% include 'breadcrumb' %}	
+				{% endif %}	
+				{{ content_for_layout }}
+			</div>
+		{% endif %}
+    </div>
+    {% section 'footer' %}
+    {% include 'popup' %} 
+    <div style='display:none'>
+      <div id='search_popup' style='padding:30px;'>
+        <!-- BEGIN #subs-container -->
+        <div id="subs-container" class="clearfix">
+          <div id="search">
+            <form action="/search" method="get">
+              <input type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}"/>
+            </form>
+          </div>  
+        </div>
+      </div>
+    </div> 
+  </div>  
+  {% section 'mobile-navigation' %}
+  
+  <a href="#" class="scrollup"><i class="fa fa-chevron-up" aria-hidden="true"></i> TOP</a>
+  <!-- Begin Recently Viewed Products -->
+  <script type="text/javascript" charset="utf-8">
+    //<![CDATA[
+    // Including api.jquery.js conditionnally.
+    if (typeof Shopify.resizeImage === 'undefined') {
+      document.write({{ "api.jquery.js" | shopify_asset_url | script_tag | json }});
+    }
+    //]]>
+  </script>
+  {{ '//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js' | script_tag }}
+  {{ 'jquery.products.min.js' | asset_url | script_tag }}
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=127142210767229";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  {% include 'currencies' %}
+
+  {% if settings.ajax_cart_method == "drawer" %}
+  {{ 'handlebars.min.js' | asset_url | script_tag }}
+  {% include 'ajax-cart-template' %}
+  {{ 'ajax-cart.js' | asset_url | script_tag }}
+  <script>
+    jQuery(function($) {
+      ajaxCart.init({
+        //formSelector: '#AddToCartForm',
+        formSelector: '#AddToCartForm, .form--quick-atc',
+        cartContainer: '#CartContainer',
+        //addToCartSelector: '#AddToCart',
+        addToCartSelector: '#AddToCart, .btn',
+        cartCountSelector: '.CartCount',
+        cartCostSelector: '.CartCost',
+        moneyFormat: {{ shop.money_format | json }},
+        onToggleCallback: function(cart) {
+        Currency.convertAll(shopCurrency, Currency.currentCurrency);
+        jQuery('.selected-currency').text(Currency.currentCurrency);
+      }
+     });
+    });
+    jQuery('body').on('ajaxCart.afterCartLoad', function(evt, cart) {
+      // Bind to 'ajaxCart.afterCartLoad' to run any javascript after the cart has loaded in the DOM
+      timber.RightDrawer.open();
+    });      
+  </script>
+  {% endif %}
+
+<!--Gem_Page_Footer_Script-->
+{% include 'gem-app-footer-scripts' %}
+<!--End_Gem_Page_Footer_Script-->
+
+<!-- spurit_um-added -->
+{% include 'spurit_um-theme-snippet' %}
+<!-- /spurit_um-added -->
+<script type="text/javascript" src="https://s3.amazonaws.com/lastsecondcoupon/js/freeshippingbar.js?shop=mysozy.myshopify.com"></script>
+	
+	{% comment %}Retention Rocket{% endcomment %}
+	{% comment %}<script src="https://app.retentionrocket.com/content/cartdrawerJs/mysozy/script.js" async></script>{% endcomment %}
+	
+<script>
+jQuery(function() {
+  jQuery('.swatch :radio').change(function() {
+    var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
+    var optionValue = jQuery(this).val();
+    jQuery(this)
+      .closest('form')
+      .find('.single-option-selector')
+      .eq(optionIndex)
+      .val(optionValue)
+      .trigger('change');
+  });
+});
+</script>
+  
+  {% if template contains 'product' %}
+  	{% include 'sticky-add-cart' %}
+  {% endif %}
+  
+ {% include 'smile-initializer' %}
+ 
+
+
+{% if customer %} <div id="shopmsg-customer-helper" data-id="{{ customer.id }}" style="display:none;"></div>{% endif %}
+  <script src="https://cdn.attn.tv/tinyrituals/dtag.js"></script>  
+</body>
+</html>
+{% comment %}{% include 'afterpay' %}{% endcomment %}
+
+<!-- Start of Afterpay assets -->
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.4) -->
+<script type="text/javascript">
+  var afterpay_logo_theme = 'colour'; // 'colour', 'black' or 'white'.
+//   var afterpay_product_selector = '.product__prices:nth-child(4)';
+//   var afterpay_cart_static_selector = '.cart__total-amount';
+  var afterpay_min = 35;
+  var afterpay_max = 1000;
+  var afterpay_show_currency_code = false;
+  var afterpay_modal_responsive = true;
+  var afterpay_modal_open_icon = true;
+  var afterpay_hide_upper_limit = true;
+
+  var afterpay_shop_currency = {{ shop.currency | json }};
+  var afterpay_shop_money_format = {{ shop.money_format | json }};
+  var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+  var afterpay_theme_name = {{ theme.name | json }};
+  var afterpay_product = {{ product | json }};
+  var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+  var afterpay_cart_total_price = {{ cart.total_price | json }};
+  var afterpay_js_snippet_version = '1.0.4';
+  const cartItems = {{ cart.items | json }};
+  const isGiftCard = (item) => item.product_type === "Gift Card";
+  
+  if(afterpay_product && afterpay_product.type === "Gift Card") {
+    afterpay_product_selector = '';
+  }
+  
+  if(cartItems && cartItems.some(isGiftCard)) {
+	afterpay_cart_static_selector = '';
+  }
+</script>
+
+<script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+<!-- End Shopify-Afterpay JavaScript Snippet (v1.0.4) -->
+<style type="text/css">
+  .afterpay-logo {
+    width: 5.5em !important;
+    height: auto !important;
+  }
+  .afterpay-paragraph {
+  	font-size: 0.9em;
+	margin-bottom: 18px !important;
+        margin-top: 10px !important;
+  }
+  #shopify-section-cart-template .afterpay-paragraph {
+  }
+  .afterpay-link-inner, .afterpay-link { 
+    text-decoration: none; 
+  }
+</style>
+<!-- End of Afterpay assets -->

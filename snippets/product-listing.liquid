@@ -1,0 +1,98 @@
+<script type="text/javascript">
+  var product = {{ product | json }};
+  var variants = [];
+  var images = [];
+
+  {% for variant in product.variants %}
+  variants.push({{ variant | json }});
+  {% endfor %}
+  product.variants = variants;
+
+  {% for image in product.images %}
+  images.push({
+    src: '{{ image | img_url: 'x800' }}',
+    alt: '{{ image.alt }}'
+  });
+  {% endfor %}
+  product.images = images;
+
+  product.url = '{{ shop.url }}/collections/{{ collection.handle }}/products/{{ product.handle }}';
+
+  _products.push({
+    id: {{ product.id }},
+    handle: {{ product.handle | json }},
+    json: product
+  });
+</script>
+
+<div class="ci vvv">
+	{% if product.available %}
+		{% for col in product.collections %}
+			{% if col.handle == 'new' %}
+				<div class="new icn">{{ 'products.general.new' | t }}</div>
+			{% endif %}
+		{% endfor %}
+		
+		{% comment %}
+			{% if product.price < product.compare_at_price %}
+				<div class="sale-item icn">{{ 'products.general.sale' | t }}</div>
+			{% endif %}
+		{% endcomment %}
+	{% else %}
+		<div class="so icn">{{ 'products.general.sold' | t }}</div>
+	{% endif %}
+	
+	<a class="product-link" onclick="javascript: return false;" href="{{ product.url | within: collection }}" title="{{ product.title | escape }}">
+		<div {% if product.images.size > 1 %}class="reveal"{% endif %}>
+			{% assign prod_image = product.selected_or_first_available_variant.image.src %}
+			{% if prod_image == null %}
+				{% assign prod_image = product.featured_image.src %}
+			{% endif %}
+			
+			{% if product.images.size == 1 %}
+              <img class="featured" src="{{ prod_image | product_img_url: 'x900' }}" alt="{{ prod_image.alt | escape }}" />
+          	{% endif %}
+			{% if product.images.size > 1 %}
+				<div class="hidden hover-carousel" data-product-id="{{ product.id }}" data-hover-index="{{ prod_image.position }}">
+                  {% for image in product.images %}
+                    <img src="{{ image | product_img_url: 'x900' }}" alt="{{ prod_image.alt | escape }}" />
+                  {% endfor %}
+          		</div>
+			{% endif %}
+		</div>
+		{% include 'short-form-collection' %}
+	</a>
+
+</div>
+
+<div class="product-info"> 
+	{% if settings.quickview %}
+		<a class="fancybox.ajax product-modal" rel="nofollow" href="{{ product.url }}?view=quick">{{ 'products.general.quick_view' | t }}</a>
+	{% endif %}
+</div> 
+
+<div class="product-details">
+  <a href="{{ product.url | within: collection }}"> 
+    {% include 'yotpo-star-rating-collection' %}
+    <h3>{{ product.title }}</h3>
+    {% if settings.vendor %}<h4>{{ product.vendor }}</h4>{% endif %}
+
+    <!-- fixed code by USAMA -->
+    <div class="price">
+      {% if product.variants.first.price < product.variants.first.compare_at_price %}
+      <div class="onsale">{{ product.price | money }}</div>
+      <div class="was-listing as">{{ product.compare_at_price | money }}</div>
+      {% else %}
+      <div class="onsale">{{ product.price | money }}</div>
+      {% endif %}	
+    </div>
+    <!-- end usama fixed code -->
+  </a>
+	
+  <form method="post" action="/cart/add" class="form--quick-atc" id="form--quick-atc-{{ product.id }}">
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+    <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+    <input type="submit" value="Add to cart" class="btn" />
+  </form>
+	
+</div>
